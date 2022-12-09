@@ -8,22 +8,21 @@ import matplotlib.pyplot as plt
 
 pd.set_option('display.max_columns', None)
 
-
 nmr_df = import_db_from_pickle()
 input_list = [x for x in nmr_df['Input']]
-print('Input list (raw):',np.array(input_list).shape)
+print('Input list (raw):', np.array(input_list).shape)
 input_list = [input_embedding(x) for x in input_list]
 print('Input list (embedded):', np.array(input_list).shape)
 output_list = [x for x in nmr_df['Morgan']]
-train_test_cutoff = int(0.8*len(nmr_df['Input'].values))
-print('cutoff:',train_test_cutoff)
+train_test_cutoff = int(0.8 * len(nmr_df['Input'].values))
+print('cutoff:', train_test_cutoff)
 input_train = np.array(input_list[:train_test_cutoff])
 input_train = np.expand_dims(input_train, axis=3)
-print('input shape:',input_train.shape)
+print('input shape:', input_train.shape)
 output_train = np.array(output_list[:train_test_cutoff], dtype=int)
 input_test = np.array(input_list[train_test_cutoff:])
 input_test = np.expand_dims(input_test, axis=3)
-print('input test shape:',input_test.shape)
+print('input test shape:', input_test.shape)
 output_test = np.array(output_list[train_test_cutoff:], dtype=int)
 prompt_message('Database imported successfuly.')
 
