@@ -1,28 +1,26 @@
+import os.path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from model import cosine_similarity, import_pre_trained, train_new_model
+import tensorflow as tf
+
 from auxiliary import prompt_message, input_embedding
-import os.path
-from database_carbon import import_database_as_df, import_db_from_pickle
-import matplotlib.pyplot as plt
+from database_carbon import import_db_from_pickle
+from model import cosine_similarity, import_pre_trained, train_new_model
 
 pd.set_option('display.max_columns', None)
 
 nmr_df = import_db_from_pickle()
 input_list = [x for x in nmr_df['Input']]
-print('Input list (raw):', np.array(input_list).shape)
 input_list = [input_embedding(x) for x in input_list]
-print('Input list (embedded):', np.array(input_list).shape)
 output_list = [x for x in nmr_df['Morgan']]
 train_test_cutoff = int(0.8 * len(nmr_df['Input'].values))
-print('cutoff:', train_test_cutoff)
 input_train = np.array(input_list[:train_test_cutoff])
 input_train = np.expand_dims(input_train, axis=3)
-print('input shape:', input_train.shape)
 output_train = np.array(output_list[:train_test_cutoff], dtype=int)
 input_test = np.array(input_list[train_test_cutoff:])
 input_test = np.expand_dims(input_test, axis=3)
-print('input test shape:', input_test.shape)
 output_test = np.array(output_list[train_test_cutoff:], dtype=int)
 prompt_message('Database imported successfuly.')
 
@@ -34,6 +32,7 @@ if os.path.exists('./pre_trained'):
             model = import_pre_trained('./pre_trained')
             history = np.load('./pre_trained/history.npy', allow_pickle=True).item()
             model.summary()
+            tf.keras.utils.plot_model(model, 'model_graph.png', show_shapes=True, show_layer_activations=True)
             prompt_message('Model imported successfuly.')
             break
         elif user_load_model == 'n':
