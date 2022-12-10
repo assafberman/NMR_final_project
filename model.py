@@ -1,3 +1,5 @@
+import datetime
+
 import tensorflow as tf
 from auxiliary import prompt_message
 
@@ -5,12 +7,9 @@ from auxiliary import prompt_message
 def initialize_model(input_length=100, embedding_length=38, output_size=512, learning_rate=0.001):
     model = tf.keras.Sequential()
     model.add(tf.keras.Input(shape=(input_length, embedding_length, 1)))
-    model.add(tf.keras.layers.Conv2D(filters=50, kernel_size=(5, 5), padding='same'))
-    model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 1)))
-    model.add(tf.keras.layers.Conv2D(filters=100, kernel_size=(5, 5), padding='same'))
-    model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 1)))
-    model.add(tf.keras.layers.Conv2D(filters=200, kernel_size=(3, 3), padding='same'))
-    model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
+    for i in range(1,5):
+        model.add(tf.keras.layers.Conv2D(filters=50*i, kernel_size=(3, 3), padding='same'))
+        model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
     model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dense(units=(output_size*2)))
     model.add(tf.keras.layers.Dense(units=output_size))
@@ -37,7 +36,9 @@ def import_pre_trained(model_path):
 
 def train_new_model(x_train, y_train, input_size=100, embedding_size=38, output_size=512, epochs=50, batch_size=64, validation_split=0.2,
                     save_path='./pre_trained', verbose=True, early_stopping=True):
-    early_stopping_callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss',patience=2)
+    early_stopping_callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2)
+    log_dir = 'logs/fit/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
     if verbose:
         prompt_message('Model initialization started.')
     new_model = initialize_model(input_length=input_size, embedding_length=embedding_size, output_size=output_size)
@@ -48,9 +49,10 @@ def train_new_model(x_train, y_train, input_size=100, embedding_size=38, output_
         prompt_message('Model fitting started.')
     if early_stopping:
         new_model.fit(x=x_train, y=y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split,
-                      callbacks=[early_stopping_callback])
+                      callbacks=[early_stopping_callback, tensorboard_callback])
     else:
-        new_model.fit(x=x_train, y=y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split)
+        new_model.fit(x=x_train, y=y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split,
+                      callbacks=[tensorboard_callback])
     if verbose:
         prompt_message('Model fitted successfuly.')
     new_model.save(save_path)
