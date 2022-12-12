@@ -50,7 +50,7 @@ def train_new_model(x_train, y_train, input_size=100, embedding_size=38, output_
     if verbose:
         prompt_message('Model initialized successfuly.')
     new_model.summary()
-    tf.keras.utils.plot_model(new_model, to_file='{}/model_graph.png'.format(log_dir), show_shapes=True, show_layer_activations=True)
+    #tf.keras.utils.plot_model(new_model, to_file='{}/model_graph.png'.format(log_dir), show_shapes=True, show_layer_activations=True)
     if verbose:
         prompt_message('Model fitting started.')
     if early_stopping:
