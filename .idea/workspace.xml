@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4717b860-28f0-449f-bab5-303f6da034f2" name="Changes" comment="update network 10/12/2022">
+    <list default="true" id="4717b860-28f0-449f-bab5-303f6da034f2" name="Changes" comment="update network 12/12/2022">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/auxiliary.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670701875418</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update network 12/12/2022">
+      <created>1670866029024</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670866029024</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +193,7 @@
     <MESSAGE value="import sd" />
     <MESSAGE value="import gitignore" />
     <MESSAGE value="update network 10/12/2022" />
-    <option name="LAST_COMMIT_MESSAGE" value="update network 10/12/2022" />
+    <MESSAGE value="update network 12/12/2022" />
+    <option name="LAST_COMMIT_MESSAGE" value="update network 12/12/2022" />
   </component>
 </project>
