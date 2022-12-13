@@ -40,9 +40,7 @@ def aux_vect_intensity(intensity: int):
 
 
 def single_tuple_embedding(shift: float, multiplicity: int, intensity: int):
-    return [shift] + \
-           aux_vect_multiplicity(multiplicity) + \
-           aux_vect_intensity(intensity)
+    return [shift, multiplicity, intensity]
 
 
 def input_embedding(p_input: list):
