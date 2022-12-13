@@ -14,21 +14,18 @@ def initialize_model(input_length=100, embedding_length=3, output_size=512, lear
     :param learning_rate: learning rate of ADAM optimizer
     :return: returns model object
     """
-    input_layer = tf.keras.Input(shape=(input_length, embedding_length, 1))
-    conv_initial = tf.keras.layers.Conv2D(filters=100, kernel_size=(2, 2), padding='same')(input_layer)
-    for i in range(10):
-        rcl_conv_layer = tf.keras.layers.Conv2D(filters=100, kernel_size=(2, 2), padding='same')(conv_initial)
-        rcl_add_layer = tf.keras.layers.Add()([conv_initial, rcl_conv_layer])
-        if i<4:
-            rcl_maxpool_layer = tf.keras.layers.MaxPooling2D(pool_size=(2, 1))(rcl_add_layer)
-            rcl_batch_layer = tf.keras.layers.BatchNormalization()(rcl_maxpool_layer)
-        else:
-            rcl_batch_layer = tf.keras.layers.BatchNormalization()(rcl_add_layer)
-        conv_initial = rcl_batch_layer
-    flatten_layer = tf.keras.layers.Flatten()(rcl_batch_layer)
-    dense1 = tf.keras.layers.Dense(units=(output_size * 2), activation='sigmoid')(flatten_layer)
-    output_layer = tf.keras.layers.Dense(units=output_size, activation='sigmoid')(dense1)
-    model = tf.keras.Model(inputs=input_layer, outputs=output_layer, name='NMR_model')
+    model = tf.keras.Sequential()
+    model.add(tf.keras.layers.Input(shape=(input_length, embedding_length, 1)))
+    model.add(tf.keras.layers.Conv2D(filters=50, kernel_size=(2, 2), padding='same'))
+    model.add(tf.keras.layers.Dense(units=100, activation='relu'))
+    model.add(tf.keras.layers.Reshape(target_shape=(input_length, embedding_length, 100, 1)))
+    for i in range(1):
+        model.add(tf.keras.layers.Conv3D(filters=50, kernel_size=(3, 3, 3), padding='same'))
+        model.add(tf.keras.layers.MaxPooling3D(pool_size=(10, 1, 10)))
+        model.add(tf.keras.layers.Dense(units=100, activation='relu'))
+    model.add(tf.keras.layers.Flatten())
+    model.add(tf.keras.layers.Dense(units=output_size, activation='sigmoid'))
+    model.build(input_shape=(input_length, embedding_length, 1))
     model = compile_model(model, learning_rate=learning_rate)
     return model
 
