@@ -14,18 +14,15 @@ def initialize_model(input_length=100, embedding_length=3, output_size=512, lear
     :param learning_rate: learning rate of ADAM optimizer
     :return: returns model object
     """
-    model = tf.keras.Sequential()
-    model.add(tf.keras.layers.Input(shape=(input_length, embedding_length, 1)))
-    model.add(tf.keras.layers.Conv2D(filters=50, kernel_size=(2, 2), padding='same'))
-    model.add(tf.keras.layers.Dense(units=100, activation='relu'))
-    model.add(tf.keras.layers.Reshape(target_shape=(input_length, embedding_length, 100, 1)))
-    for i in range(1):
-        model.add(tf.keras.layers.Conv3D(filters=50, kernel_size=(3, 3, 3), padding='same'))
-        model.add(tf.keras.layers.MaxPooling3D(pool_size=(10, 1, 10)))
-        model.add(tf.keras.layers.Dense(units=100, activation='relu'))
-    model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(units=output_size, activation='sigmoid'))
-    model.build(input_shape=(input_length, embedding_length, 1))
+    input_layer = tf.keras.layers.Input(shape=(input_length, embedding_length))
+    lstm_layer = tf.keras.layers.LSTM(units=100, return_sequences=True)(input_layer)
+    lstm_layer = tf.keras.layers.LSTM(units=100, return_sequences=True)(lstm_layer)
+    reshape_layer = tf.keras.layers.Reshape(target_shape=(input_length, 100, 1))(lstm_layer)
+    conv_layer = tf.keras.layers.Conv2D(filters=100, kernel_size=(2, 2), padding='same')(reshape_layer)
+    maxpool_layer = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv_layer)
+    flatten_layer = tf.keras.layers.Flatten()(maxpool_layer)
+    output_layer = tf.keras.layers.Dense(units=output_size, activation='sigmoid')(flatten_layer)
+    model = tf.keras.Model(inputs=input_layer, outputs=output_layer, name='NMR_Model')
     model = compile_model(model, learning_rate=learning_rate)
     return model
 
