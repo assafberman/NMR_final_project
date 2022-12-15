@@ -15,13 +15,17 @@ def initialize_model(input_length=100, embedding_length=3, output_size=512, lear
     :return: returns model object
     """
     input_layer = tf.keras.layers.Input(shape=(input_length, embedding_length))
-    lstm_layer = tf.keras.layers.LSTM(units=100, return_sequences=True)(input_layer)
-    lstm_layer = tf.keras.layers.LSTM(units=100, return_sequences=True)(lstm_layer)
-    reshape_layer = tf.keras.layers.Reshape(target_shape=(input_length, 100, 1))(lstm_layer)
-    conv_layer = tf.keras.layers.Conv2D(filters=100, kernel_size=(2, 2), padding='same')(reshape_layer)
+    dense_layer = tf.keras.layers.Dense(units=40)(input_layer)
+    reshape_layer = tf.keras.layers.Reshape(target_shape=(input_length, 40, 1))(dense_layer)
+    conv_layer = tf.keras.layers.Conv2D(filters=40, kernel_size=(2, 2), padding='same')(reshape_layer)
+    maxpool_layer = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv_layer)
+    conv_layer = tf.keras.layers.Conv2D(filters=40, kernel_size=(3, 3), padding='same')(maxpool_layer)
+    maxpool_layer = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv_layer)
+    conv_layer = tf.keras.layers.Conv2D(filters=40, kernel_size=(5, 5), padding='same')(maxpool_layer)
     maxpool_layer = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv_layer)
     flatten_layer = tf.keras.layers.Flatten()(maxpool_layer)
-    output_layer = tf.keras.layers.Dense(units=output_size, activation='sigmoid')(flatten_layer)
+    dense_layer = tf.keras.layers.Dense(units=output_size, activation='relu')(flatten_layer)
+    output_layer = tf.keras.layers.Dense(units=output_size, activation='sigmoid')(dense_layer)
     model = tf.keras.Model(inputs=input_layer, outputs=output_layer, name='NMR_Model')
     model = compile_model(model, learning_rate=learning_rate)
     return model
@@ -44,27 +48,26 @@ def import_pre_trained(model_path):
     return tf.keras.models.load_model(model_path)
 
 
-def train_new_model(x_train, y_train, input_size=100, embedding_size=3, output_size=512, epochs=50, batch_size=64,
+def train_new_model(x_train, y_train, input_size=100, embedding_size=3, output_size=512, epochs=50, batch_size=32,
                     validation_split=0.2,
                     save_path='./pre_trained', verbose=True, early_stopping=True):
-    early_stopping_callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=4)
+    early_stopping_callback = tf.keras.callbacks.EarlyStopping(monitor='val_cosine_similarity', patience=4)
     log_dir = 'logs/fit/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
     if verbose:
         prompt_message('Model initialization started.')
     new_model = initialize_model(input_length=input_size, embedding_length=embedding_size, output_size=output_size)
     if verbose:
-        prompt_message('Model initialized successfuly.')
+        prompt_message('Model initialized successfully.')
     new_model.summary()
     #tf.keras.utils.plot_model(new_model, to_file='{}/model_graph.png'.format(log_dir), show_shapes=True, show_layer_activations=True)
     if verbose:
         prompt_message('Model fitting started.')
     if early_stopping:
         new_model.fit(x=x_train, y=y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split,
-                      callbacks=[early_stopping_callback, tensorboard_callback])
-    else:
-        new_model.fit(x=x_train, y=y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split,
                       callbacks=[tensorboard_callback])
+    else:
+        new_model.fit(x=x_train, y=y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split)
     if verbose:
         prompt_message('Model fitted successfuly.')
     new_model.save(save_path)
