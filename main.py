@@ -32,7 +32,7 @@ if os.path.exists('./pre_trained'):
             model = import_pre_trained('./pre_trained')
             history = np.load('./pre_trained/history.npy', allow_pickle=True).item()
             model.summary()
-            #tf.keras.utils.plot_model(model, 'model_graph.png', show_shapes=True, show_layer_activations=True)
+            tf.keras.utils.plot_model(model, 'model_graph.png', show_shapes=True, show_layer_activations=True)
             prompt_message('Model imported successfully.')
             break
         elif user_load_model == 'n':
