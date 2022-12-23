@@ -5,7 +5,7 @@ import numpy as np
 from rdkit import RDLogger
 import tensorflow as tf
 import re
-from auxiliary import prompt_message
+from auxiliary import prompt_message, extract_maximum_multiplicity_intensity, input_embedding
 import os
 
 
@@ -66,7 +66,7 @@ def simplify_spectra(nmr_df):
     nmr_df['Spectrum 13C'] = nmr_df['Spectrum 13C'].apply(aux_frequency_list)
     nmr_df['Spectrum 13C'] = nmr_df['Spectrum 13C'].apply(aux_num_multiplicity)
     nmr_df['Spectrum 13C'] = nmr_df['Spectrum 13C'].apply(pad_spectrum)
-    #nmr_df['Input'] = nmr_df.apply(lambda x: np.asarray(x['Spectrum 13C']), axis=1)
+    # nmr_df['Input'] = nmr_df.apply(lambda x: np.asarray(x['Spectrum 13C']), axis=1)
     nmr_df['Input'] = nmr_df['Spectrum 13C']
     return nmr_df
 
@@ -151,3 +151,11 @@ def import_db_from_pickle(pickle_path='./database/carbon_nmr.pkl'):
         nmr_df = import_database_as_df()
         nmr_df.to_pickle('./database/carbon_nmr.pkl')
     return nmr_df
+
+
+def create_input_output_list(nmr_df):
+    input_list = [x for x in nmr_df['Input']]
+    max_multiplicity, max_intensity = extract_maximum_multiplicity_intensity(input_list)
+    input_list = [input_embedding(x, max_multiplicity, max_intensity) for x in input_list]
+    output_list = [x for x in nmr_df['Morgan']]
+    return input_list, output_list

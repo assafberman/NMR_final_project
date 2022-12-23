@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625c6dfa-8cb1-434c-88a2-57f16b13d612" name="Changes" comment="update 15/12">
+    <list default="true" id="4717b860-28f0-449f-bab5-303f6da034f2" name="Changes" comment="import gitignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/NMR_final_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NMR_final_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auxiliary.py" beforeDir="false" afterPath="$PROJECT_DIR$/auxiliary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_carbon.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_carbon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,25 +22,26 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="RCNN" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/anaconda3/envs/my-rdkit-env/Lib/site-packages/keras/engine/input_spec.py" root0="SKIP_INSPECTION" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2IPKQ7oyYPiSwF7m8dXK12MukAH" />
+  <component name="ProjectId" id="2IPJwyeq0b0oFZxpg8CFda1FMBB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/assaf/PycharmProjects/NMR_final_project/main.py",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
   }
 }]]></component>
   <component name="RunManager">
@@ -45,9 +52,10 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="SDK_NAME" value="$USER_HOME$/anaconda3" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
@@ -63,46 +71,85 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="625c6dfa-8cb1-434c-88a2-57f16b13d612" name="Changes" comment="" />
-      <created>1670077759474</created>
+      <changelist id="4717b860-28f0-449f-bab5-303f6da034f2" name="Changes" comment="" />
+      <created>1670077528791</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1670077759474</updated>
+      <updated>1670077528791</updated>
     </task>
-    <task id="LOCAL-00001" summary="reformat main">
-      <created>1670078439774</created>
+    <task id="LOCAL-00001" summary="training model">
+      <created>1670084603735</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1670078439774</updated>
+      <updated>1670084603735</updated>
     </task>
-    <task id="LOCAL-00002" summary="update 13/12">
-      <created>1670961851385</created>
+    <task id="LOCAL-00002" summary="gitignore and update 9/12/2022">
+      <created>1670567784484</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1670961851385</updated>
+      <updated>1670567784484</updated>
     </task>
-    <task id="LOCAL-00003" summary="update 13/12">
-      <created>1670965408403</created>
+    <task id="LOCAL-00003" summary="gitignore and update 9/12/2022">
+      <created>1670602532216</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1670965408403</updated>
+      <updated>1670602532216</updated>
     </task>
-    <task id="LOCAL-00004" summary="update 15/12">
-      <created>1671080291149</created>
+    <task id="LOCAL-00004" summary="gitignore and update 9/12/2022">
+      <created>1670603029640</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1671080291149</updated>
+      <updated>1670603029640</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="import sd">
+      <created>1670604727049</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670604727049</updated>
+    </task>
+    <task id="LOCAL-00006" summary="import gitignore">
+      <created>1670612953003</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670612953003</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="79763fef-f7ee-4af1-9375-88c6c69397c8">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -111,7 +158,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="RCNN" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -122,11 +169,17 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="79763fef-f7ee-4af1-9375-88c6c69397c8" value="TOOL_WINDOW" />
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="reformat main" />
-    <MESSAGE value="update 13/12" />
-    <MESSAGE value="update 15/12" />
-    <option name="LAST_COMMIT_MESSAGE" value="update 15/12" />
+    <MESSAGE value="training model" />
+    <MESSAGE value="gitignore and update 9/12/2022" />
+    <MESSAGE value="import sd" />
+    <MESSAGE value="import gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="import gitignore" />
   </component>
 </project>
