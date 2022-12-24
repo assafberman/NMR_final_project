@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4717b860-28f0-449f-bab5-303f6da034f2" name="Changes" comment="new embedding">
+    <list default="true" id="4717b860-28f0-449f-bab5-303f6da034f2" name="Changes" comment="ConvLSTM">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_carbon.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_carbon.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
     </list>
@@ -46,7 +47,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="LD_LIBRARY_PATH" value=":/usr/local/cuda-11.1/targets/x86_64-linux/lib:$USER_HOME$/anaconda3/pkgs/cudatoolkit-11.2.2-hbe64b41_10/lib:$cuda$/python3.9/site-packages/tensorrt" />
+        <env name="LD_LIBRARY_PATH" value=":/usr/local/cuda-11.1/targets/x86_64-linux/lib:$USER_HOME$/anaconda3/pkgs/cudatoolkit-11.2.2-hbe64b41_10/lib:$cuda$/python3.9/site-packages/tensorrt:$cuda$/python3.9/site-packages/nvidia/cudnn/lib" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="SDK_NAME" value="$USER_HOME$/anaconda3" />
@@ -122,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671787707387</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ConvLSTM">
+      <created>1671811718013</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671811718013</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +192,18 @@
     <MESSAGE value="import sd" />
     <MESSAGE value="import gitignore" />
     <MESSAGE value="new embedding" />
-    <option name="LAST_COMMIT_MESSAGE" value="new embedding" />
+    <MESSAGE value="ConvLSTM" />
+    <option name="LAST_COMMIT_MESSAGE" value="ConvLSTM" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

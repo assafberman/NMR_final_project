@@ -7,6 +7,7 @@ import tensorflow as tf
 import re
 from auxiliary import prompt_message, extract_maximum_multiplicity_intensity, input_embedding
 import os
+from sklearn.preprocessing import StandardScaler
 
 
 def initialize_dataframe(molecule_list):
@@ -66,7 +67,6 @@ def simplify_spectra(nmr_df):
     nmr_df['Spectrum 13C'] = nmr_df['Spectrum 13C'].apply(aux_frequency_list)
     nmr_df['Spectrum 13C'] = nmr_df['Spectrum 13C'].apply(aux_num_multiplicity)
     nmr_df['Spectrum 13C'] = nmr_df['Spectrum 13C'].apply(pad_spectrum)
-    # nmr_df['Input'] = nmr_df.apply(lambda x: np.asarray(x['Spectrum 13C']), axis=1)
     nmr_df['Input'] = nmr_df['Spectrum 13C']
     return nmr_df
 

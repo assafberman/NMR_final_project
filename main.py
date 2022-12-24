@@ -14,7 +14,6 @@ pd.set_option('display.max_columns', None)
 
 nmr_df = import_db_from_pickle()
 input_list, output_list = create_input_output_list(nmr_df)
-
 input_train, input_test, output_train, output_test = train_test_split(input_list, output_list,
                                                                       train_size=0.8, random_state=42)
 input_train = np.array(input_train)
